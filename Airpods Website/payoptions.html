@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airpods Website</title>
+    <link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+
+</head>
+<body>
+      <!-- Main Navigation Bar -->
+    <nav class="primary-navbar">
+        <div class="navbar-container">
+            <!-- Logo Section -->
+            <div class="brand-logo">
+                <img src="images/navlogo.png" alt="Airnew Logo" class="logo-image">
+                <span class="brand-name">Airnew</span>
+            </div>
+
+            <!-- Navigation Links -->
+            <ul class="nav-links-menu">
+                <li><a href="index.html" class="nav-item active-link">Home</a></li>
+                <li><a href="products.html" class="nav-item">Products</a></li>
+                <li><a href="gallery.html" class="nav-item">Gallery</a></li>
+                <li><a href="blogs.html" class="nav-item">Blogs</a></li>
+                <li><a href="contact.html" class="nav-item">Contact us</a></li>
+                <li><a href="about.html" class="nav-item">About us</a></li>
+            </ul>
+
+            <!-- Search Bar -->
+            <div class="search-container">
+                <input type="text" class="search-input-field" placeholder="Search">
+                <button class="search-submit-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Right Side Actions -->
+            <div class="navbar-actions">
+                <!-- Register Button (shows when logged out) -->
+                <button class="register-action-btn" id="registerBtn">Register</button>
+
+                <!-- User Actions (shows when logged in) -->
+                <div class="user-actions-group" id="userActions" style="display: none;">
+                    <!-- Wishlist Icon -->
+                   <a href="like.html"><button class="action-icon-btn wishlist-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                    </button></a>
+
+                    <!-- Cart Icon -->
+                    <button class="action-icon-btn cart-btn">
+                       <a href="cart.html"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                        <span class="cart-badge">3</span>
+                    </button></a> 
+
+                    <!-- Notifications Icon -->
+                    <button class="action-icon-btn notification-btn" id="notificationBtn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                        <span class="notification-badge">5</span>
+                    </button>
+
+                    <!-- User Profile -->
+                   <button class="user-profile-btn" id="userProfileBtn">
+                        <img src="images/user.png" alt="User" class="user-avatar-img">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+   
+
+    <!-- Login/Signup Modal -->
+    <div class="auth-modal-overlay" id="authModal">
+        <div class="auth-modal-content">
+            <button class="modal-close-btn" id="closeAuthModal">&times;</button>
+            
+            <!-- Sign In Form -->
+            <div class="auth-form-container signin-form-container" id="signinForm">
+                <h2 class="auth-form-title">Sign In</h2>
+                <form class="auth-input-form">
+                    <div class="form-input-group">
+                        <label class="form-input-label">Email</label>
+                        <input type="email" class="form-control-input" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-input-group">
+                        <label class="form-input-label">Password</label>
+                        <input type="password" class="form-control-input" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="auth-submit-btn" id="signinSubmitBtn">Sign In</button>
+                </form>
+                <p class="auth-switch-text">Don't have an account? <a href="#" class="auth-switch-link" id="showSignup">Sign Up</a></p>
+            </div>
+
+            <!-- Sign Up Form -->
+            <div class="auth-form-container signup-form-container" id="signupForm" style="display: none;">
+                <h2 class="auth-form-title">Sign Up</h2>
+                <form class="auth-input-form">
+                    <div class="form-input-group">
+                        <label class="form-input-label">Full Name</label>
+                        <input type="text" class="form-control-input" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-input-group">
+                        <label class="form-input-label">Email</label>
+                        <input type="email" class="form-control-input" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-input-group">
+                        <label class="form-input-label">Password</label>
+                        <input type="password" class="form-control-input" placeholder="Create a password" required>
+                    </div>
+                    <div class="form-input-group">
+                        <label class="form-input-label">Confirm Password</label>
+                        <input type="password" class="form-control-input" placeholder="Confirm your password" required>
+                    </div>
+                    <button type="submit" class="auth-submit-btn" id="signupSubmitBtn">Sign Up</button>
+                </form>
+                <p class="auth-switch-text">Already have an account? <a href="#" class="auth-switch-link" id="showSignin">Sign In</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Profile Dropdown Modal -->
+    <div class="user-dropdown-modal" id="userDropdownModal">
+        <ul class="user-dropdown-list">
+            <li><a href="user.html" class="dropdown-menu-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                Account Information
+            </a></li>
+            <li><a href="user.html" class="dropdown-menu-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="8.5" cy="7" r="4"></circle>
+                    <polyline points="17 11 19 13 23 9"></polyline>
+                </svg>
+                My order
+            </a></li>
+            <li><a href="user.html" class="dropdown-menu-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                Tracking order
+            </a></li>
+            <li><a href="user.html" class="dropdown-menu-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                Password Manager
+            </a></li>
+            <li><a href="user.html" class="dropdown-menu-item logout-item" id="logoutBtn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                    <polyline points="16 17 21 12 16 7"></polyline>
+                    <line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
+                Logout
+            </a></li>
+        </ul>
+    </div>
+
+    <!-- Notifications Dropdown Modal -->
+    <div class="notifications-dropdown-modal" id="notificationsModal">
+        <div class="notifications-header">
+            <h3 class="notifications-title">Notifications</h3>
+            <button class="mark-all-read-btn">Mark all as read</button>
+        </div>
+        <ul class="notifications-list">
+            <li class="notification-list-item unread-notification">
+                <div class="notification-icon-wrapper">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                </div>
+                <div class="notification-content-wrapper">
+                    <p class="notification-message-text">Your order #12345 has been shipped</p>
+                    <span class="notification-time-text">2 minutes ago</span>
+                </div>
+            </li>
+            <li class="notification-list-item unread-notification">
+                <div class="notification-icon-wrapper">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                </div>
+                <div class="notification-content-wrapper">
+                    <p class="notification-message-text">Payment successful for order #12344</p>
+                    <span class="notification-time-text">1 hour ago</span>
+                </div>
+            </li>
+            <li class="notification-list-item">
+                <div class="notification-icon-wrapper">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                </div>
+                <div class="notification-content-wrapper">
+                    <p class="notification-message-text">New message from customer support</p>
+                    <span class="notification-time-text">3 hours ago</span>
+                </div>
+            </li>
+            <li class="notification-list-item">
+                <div class="notification-icon-wrapper">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="12"></line>
+                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                    </svg>
+                </div>
+                <div class="notification-content-wrapper">
+                    <p class="notification-message-text">Special offer: 30% off on AirPods</p>
+                    <span class="notification-time-text">1 day ago</span>
+                </div>
+            </li>
+            <li class="notification-list-item">
+                <div class="notification-icon-wrapper">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                </div>
+                <div class="notification-content-wrapper">
+                    <p class="notification-message-text">Item in your wishlist is now on sale</p>
+                    <span class="notification-time-text">2 days ago</span>
+                </div>
+            </li>
+        </ul>
+        <div class="notifications-footer">
+            <a href="#" class="view-all-notifications-link">View all notifications</a>
+        </div>
+    </div>
+
+      <!-- Main Payment Section -->
+    <div class="payment-main-wrapper">
+        <h1 class="payment-page-title">Payment Section</h1>
+
+        <!-- Product, Details, and Summary -->
+        <div class="payment-content-grid">
+            <!-- Product Image -->
+            <div class="product-display-card">
+                <div class="product-image-container">
+                    <img src="images/cart.png" alt="Airpad Pro Earband">
+                </div>
+            </div>
+
+            <!-- Product Details -->
+            <div class="product-details-section">
+                <div class="detail-field-group">
+                    <div class="detail-label-text">Product</div>
+                    <div class="detail-value-text">Airpad Pro Earband</div>
+                </div>
+
+                <div class="detail-field-group">
+                    <div class="detail-label-text">Date</div>
+                    <div class="detail-value-text">22 August 2025</div>
+                </div>
+
+                <div class="detail-field-group">
+                    <div class="detail-label-text">Price</div>
+                    <div class="price-value-green">$29</div>
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="order-summary-card">
+                <h2 class="summary-heading-title">Order Summary</h2>
+                
+                <div class="summary-line-item">
+                    <span class="summary-item-label">Items</span>
+                    <span class="summary-item-value">1</span>
+                </div>
+                
+                <div class="summary-line-item">
+                    <span class="summary-item-label">Subtotal</span>
+                    <span class="summary-item-value">$.31</span>
+                </div>
+                
+                <div class="summary-line-item">
+                    <span class="summary-item-label">Shipping</span>
+                    <span class="summary-item-value">$.00.0</span>
+                </div>
+                
+                <div class="summary-line-item">
+                    <span class="summary-item-label">Taxes</span>
+                    <span class="summary-item-value">$.00.0</span>
+                </div>
+                
+                <div class="summary-line-item">
+                    <span class="summary-item-label">Coupen Discount</span>
+                    <span class="summary-item-value">$.200</span>
+                </div>
+
+                <hr class="summary-divider-line">
+
+                <div class="summary-total-row">
+                    <span class="total-label-text">Total</span>
+                    <span class="total-amount-green">$29</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment Trigger Button -->
+        <div class="payment-trigger-wrapper">
+            <button class="payment-dropdown-button" id="paymentTriggerBtn">
+                Payment
+                <i class="fas fa-chevron-down payment-arrow-icon" id="paymentArrowIcon"></i>
+            </button>
+        </div>
+
+        <!-- Decorative Background -->
+        <div class="decorative-background-section">
+            <img src="images/hero.png" alt="Background">
+        </div>
+    </div>
+
+    <!-- Payment Options Modal -->
+    <div class="payment-options-modal-overlay" id="paymentOptionsModal">
+        <div class="payment-options-modal-box">
+            <h2 class="payment-modal-heading">
+                Payment
+                <i class="fas fa-chevron-up"></i>
+            </h2>
+
+            <div class="payment-options-list">
+                <label class="payment-option-item">
+                    <input type="radio" name="paymentMethod" value="google-pay" class="payment-radio-input">
+                    <span class="payment-option-label">Google pay</span>
+                    <div class="payment-option-icon google-pay-icon">
+                        <i class="fab fa-google"></i>
+                    </div>
+                </label>
+
+                <label class="payment-option-item">
+                    <input type="radio" name="paymentMethod" value="phone-pay" class="payment-radio-input">
+                    <span class="payment-option-label">Phone pay</span>
+                    <div class="payment-option-icon phone-pay-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                </label>
+
+                <label class="payment-option-item">
+                    <input type="radio" name="paymentMethod" value="paytm" class="payment-radio-input">
+                    <span class="payment-option-label">Paytm</span>
+                    <div class="payment-option-icon paytm-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                </label>
+            </div>
+
+            <button class="payment-ok-button" id="paymentOkBtn" disabled>ok</button>
+        </div>
+    </div>
+
+    <!-- Payment Form Modal -->
+    <div class="payment-form-modal-overlay" id="paymentFormModal">
+        <div class="payment-form-modal-box">
+            <div class="payment-form-content">
+                <h2 class="payment-form-title" id="paymentFormTitle">Google Pay</h2>
+
+                <form id="paymentDetailsForm">
+                    <div class="form-input-group">
+                        <label class="form-input-label">Name :</label>
+                        <input type="text" class="form-text-input" id="customerNameInput" required>
+                    </div>
+
+                    <div class="form-input-group" id="upiIdGroup">
+                        <label class="form-input-label">Enter UPI ID</label>
+                        <input type="text" class="form-text-input" id="upiIdInput" required>
+                    </div>
+
+                    <button type="submit" class="payment-proceed-button">Proceed</button>
+                </form>
+            </div>
+
+            <div class="payment-provider-logo" id="paymentProviderLogo">
+                <i class="fab fa-google" style="color: #4285f4;"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Popup -->
+    <div class="success-popup-overlay" id="successPopup">
+        <div class="success-popup-box">
+            <div class="success-checkmark-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <h2 class="success-message-title">Payment Successful!</h2>
+            <p class="success-message-text">Your payment has been processed successfully.</p>
+            <p class="redirect-timer-text">Redirecting to invoice in <span id="redirectTimer">3</span> seconds...</p>
+        </div>
+    </div>
+
+    <script>
+        // Get DOM elements
+        const paymentTriggerBtn = document.getElementById('paymentTriggerBtn');
+        const paymentArrowIcon = document.getElementById('paymentArrowIcon');
+        const paymentOptionsModal = document.getElementById('paymentOptionsModal');
+        const paymentOkBtn = document.getElementById('paymentOkBtn');
+        const paymentFormModal = document.getElementById('paymentFormModal');
+        const paymentDetailsForm = document.getElementById('paymentDetailsForm');
+        const successPopup = document.getElementById('successPopup');
+        const redirectTimer = document.getElementById('redirectTimer');
+        const paymentFormTitle = document.getElementById('paymentFormTitle');
+        const paymentProviderLogo = document.getElementById('paymentProviderLogo');
+        const upiIdGroup = document.getElementById('upiIdGroup');
+
+        let selectedPaymentMethod = null;
+
+        // Open payment options modal
+        paymentTriggerBtn.addEventListener('click', () => {
+            paymentOptionsModal.classList.add('active');
+            paymentArrowIcon.classList.add('rotated');
+        });
+
+        // Close payment options modal when clicking outside
+        paymentOptionsModal.addEventListener('click', (e) => {
+            if (e.target === paymentOptionsModal) {
+                paymentOptionsModal.classList.remove('active');
+                paymentArrowIcon.classList.remove('rotated');
+            }
+        });
+
+        // Enable OK button when payment method is selected
+        const paymentRadios = document.querySelectorAll('input[name="paymentMethod"]');
+        paymentRadios.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                selectedPaymentMethod = e.target.value;
+                paymentOkBtn.disabled = false;
+            });
+        });
+
+        // Open payment form modal
+        paymentOkBtn.addEventListener('click', () => {
+            if (selectedPaymentMethod) {
+                paymentOptionsModal.classList.remove('active');
+                
+                // Update form based on selected payment method
+                updatePaymentForm(selectedPaymentMethod);
+                
+                paymentFormModal.classList.add('active');
+            }
+        });
+
+        // Update payment form based on selected method
+        function updatePaymentForm(method) {
+            let title = '';
+            let logoIcon = '';
+            let logoColor = '';
+
+            switch(method) {
+                case 'google-pay':
+                    title = 'Google Pay';
+                    logoIcon = '<i class="fab fa-google" style="color: #4285f4;"></i>';
+                    upiIdGroup.style.display = 'block';
+                    document.getElementById('upiIdInput').required = true;
+                    break;
+                case 'phone-pay':
+                    title = 'Phone Pay';
+                    logoIcon = '<i class="fas fa-mobile-alt" style="color: #5f259f;"></i>';
+                    upiIdGroup.style.display = 'block';
+                    document.getElementById('upiIdInput').required = true;
+                    break;
+                case 'paytm':
+                    title = 'Paytm';
+                    logoIcon = '<i class="fas fa-credit-card" style="color: #00b9f5;"></i>';
+                    upiIdGroup.style.display = 'block';
+                    document.getElementById('upiIdInput').required = true;
+                    break;
+            }
+
+            paymentFormTitle.textContent = title;
+            paymentProviderLogo.innerHTML = logoIcon;
+        }
+
+        // Close payment form modal when clicking outside
+        paymentFormModal.addEventListener('click', (e) => {
+            if (e.target === paymentFormModal) {
+                paymentFormModal.classList.remove('active');
+                paymentArrowIcon.classList.remove('rotated');
+            }
+        });
+
+        // Handle form submission
+        paymentDetailsForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Close form modal
+            paymentFormModal.classList.remove('active');
+            
+            // Show success popup
+            successPopup.classList.add('active');
+            
+            // Start countdown timer
+            let timeLeft = 3;
+            redirectTimer.textContent = timeLeft;
+            
+            const countdown = setInterval(() => {
+                timeLeft--;
+                redirectTimer.textContent = timeLeft;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    // Redirect to invoice page
+                    window.location.href = 'invoice.html';
+                }
+            }, 1000);
+        });
+    </script>
+
+
+     <footer class="site-footer-section">
+        <div class="footer-content-wrapper">
+            <!-- Brand Column -->
+            <div class="brand-column">
+                <div class="brand-logo-container">
+                  <img src="images/navlogo.png">
+                </div>
+                <h2 class="brand-name-text">Airnew</h2>
+            </div>
+
+            <!-- Customer Service Column -->
+            <div class="footer-links-column">
+                <h3 class="column-heading-title">Customer service</h3>
+                <ul class="links-list-container">
+                    <li class="link-list-item"><a href="user.html" class="footer-navigation-link">My Account</a></li>
+                    <li class="link-list-item"><a href="#" class="footer-navigation-link">Checkup</a></li>
+                    <li class="link-list-item"><a href="#" class="footer-navigation-link">FAQ</a></li>
+                    <li class="link-list-item"><a href="#" class="footer-navigation-link">Return</a></li>
+                </ul>
+            </div>
+
+            <!-- Company Column -->
+            <div class="footer-links-column">
+                <h3 class="column-heading-title">Company</h3>
+                <ul class="links-list-container">
+                    <li class="link-list-item"><a href="about.html" class="footer-navigation-link">About us</a></li>
+                    <li class="link-list-item"><a href="blogs.html" class="footer-navigation-link">Blogs</a></li>
+                    <li class="link-list-item"><a href="contact.html" class="footer-navigation-link">Contact us policy</a></li>
+                </ul>
+            </div>
+
+            <!-- Our Information Column -->
+            <div class="footer-links-column">
+                <h3 class="column-heading-title">Our information</h3>
+                <ul class="links-list-container">
+                    <li class="link-list-item"><a href="#" class="footer-navigation-link">Privacy</a></li>
+                    <li class="link-list-item"><a href="#" class="footer-navigation-link">Terms & Condition</a></li>
+                    <li class="link-list-item"><a href="#" class="footer-navigation-link">Customer Feed back</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Information Column -->
+            <div class="contact-info-column">
+                <div class="contact-detail-item">
+                    <p class="contact-label-text">Mobile:</p>
+                    <p class="contact-value-text">123-456-789</p>
+                </div>
+                <div class="contact-detail-item">
+                    <p class="contact-label-text">Email_</p>
+                    <p class="contact-value-text">Airnew@gmail.com</p>
+                </div>
+                <div class="contact-detail-item">
+                    <p class="contact-label-text">Address :</p>
+                    <p class="contact-value-text">12, north city-001</p>
+                </div>
+                <div class="social-media-icons-wrapper">
+                    <a href="#" class="social-icon-link" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="#" class="social-icon-link" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-icon-link" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom Section -->
+        <div class="footer-bottom-section">
+            <p class="copyright-text">© 2025 airnew. co. All rights reserved.</p>
+            <div class="bottom-links-wrapper">
+                <a href="#" class="bottom-policy-link">Terms & Conditions</a>
+                <span class="link-separator">|</span>
+                <a href="#" class="bottom-policy-link">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

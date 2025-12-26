@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airpods Website</title>
+    <link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+      <!-- Main Navigation Bar -->
+    <nav class="primary-navbar">
+        <div class="navbar-container">
+            <!-- Logo Section -->
+            <div class="brand-logo">
+                <img src="images/navlogo.png" alt="Airnew Logo" class="logo-image">
+                <span class="brand-name">Airnew</span>
+            </div>
+
+            <!-- Navigation Links -->
+            <ul class="nav-links-menu">
+                <li><a href="index.html" class="nav-item active-link">Home</a></li>
+                <li><a href="products.html" class="nav-item">Products</a></li>
+                <li><a href="gallery.html" class="nav-item">Gallery</a></li>
+                <li><a href="blogs.html" class="nav-item">Blogs</a></li>
+                <li><a href="contact.html" class="nav-item">Contact us</a></li>
+                <li><a href="about.html" class="nav-item">About us</a></li>
+            </ul>
+
+            <!-- Search Bar -->
+            <div class="search-container">
+                <input type="text" class="search-input-field" placeholder="Search">
+                <button class="search-submit-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Right Side Actions -->
+            <div class="navbar-actions">
+                <!-- Register Button (shows when logged out) -->
+                <button class="register-action-btn" id="registerBtn">Register</button>
+
+                <!-- User Actions (shows when logged in) -->
+                <div class="user-actions-group" id="userActions" style="display: none;">
+                    <!-- Wishlist Icon -->
+                   <a href="like.html"><button class="action-icon-btn wishlist-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                    </button></a>
+
+                    <!-- Cart Icon -->
+                    <button class="action-icon-btn cart-btn">
+                       <a href="cart.html"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                        <span class="cart-badge">3</span>
+                    </button></a> 
+
+                    <!-- Notifications Icon -->
+                    <button class="action-icon-btn notification-btn" id="notificationBtn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                        <span class="notification-badge">5</span>
+                    </button>
+
+                    <!-- User Profile -->
+                   <button class="user-profile-btn" id="userProfileBtn">
+                        <img src="images/user.png" alt="User" class="user-avatar-img">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+   
+
+    <!-- Login/Signup Modal -->
+    <div class="auth-modal-overlay" id="authModal">
+        <div class="auth-modal-content">
+            <button class="modal-close-btn" id="closeAuthModal">&times;</button>
+            
+            <!-- Sign In Form -->
+            <div class="auth-form-container signin-form-container" id="signinForm">
+                <h2 class="auth-form-title">Sign In</h2>
+                <form class="auth-input-form">
+                    <div class="form-input-group">
+                        <label class="form-input-label">Email</label>
+                        <input type="email" class="form-control-input" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-input-group">
+                        <label class="form-input-label">Password</label>
+                        <input type="password" class="form-control-input" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="auth-submit-btn" id="signinSubmitBtn">Sign In</button>
+                </form>
+                <p class="auth-switch-text">Don't have an account? <a href="#" class="auth-switch-link" id="showSignup">Sign Up</a></p>
+            </div>
+
+            <!-- Sign Up Form -->
+            <div class="auth-form-container signup-form-container" id="signupForm" style="display: none;">
+                <h2 class="auth-form-title">Sign Up</h2>
+                <form class="auth-input-form">
+                    <div class="form-input-group">
+                        <label class="form-input-label">Full Name</label>
+                        <input type="text" class="form-control-input" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-input-group">
+                        <label class="form-input-label">Email</label>
+                        <input type="email" class="form-control-input" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-input-group">
+                        <label class="form-input-label">Password</label>
+                        <input type="password" class="form-control-input" placeholder="Create a password" required>
+                    </div>
+                    <div class="form-input-group">
+                        <label class="form-input-label">Confirm Password</label>
+                        <input type="password" class="form-control-input" placeholder="Confirm your password" required>
+                    </div>
+                    <button type="submit" class="auth-submit-btn" id="signupSubmitBtn">Sign Up</button>
+                </form>
+                <p class="auth-switch-text">Already have an account? <a href="#" class="auth-switch-link" id="showSignin">Sign In</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Profile Dropdown Modal -->
+    <div class="user-dropdown-modal" id="userDropdownModal">
+        <ul class="user-dropdown-list">
+            <li><a href="user.html" class="dropdown-menu-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                Account Information
+            </a></li>
+            <li><a href="user.html" class="dropdown-menu-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="8.5" cy="7" r="4"></circle>
+                    <polyline points="17 11 19 13 23 9"></polyline>
+                </svg>
+                My order
+            </a></li>
+            <li><a href="user.html" class="dropdown-menu-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                Tracking order
+            </a></li>
+            <li><a href="user.html" class="dropdown-menu-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                Password Manager
+            </a></li>
+            <li><a href="user.html" class="dropdown-menu-item logout-item" id="logoutBtn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                    <polyline points="16 17 21 12 16 7"></polyline>
+                    <line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
+                Logout
+            </a></li>
+        </ul>
+    </div>
+
+    <!-- Notifications Dropdown Modal -->
+    <div class="notifications-dropdown-modal" id="notificationsModal">
+        <div class="notifications-header">
+            <h3 class="notifications-title">Notifications</h3>
+            <button class="mark-all-read-btn">Mark all as read</button>
+        </div>
+        <ul class="notifications-list">
+            <li class="notification-list-item unread-notification">
+                <div class="notification-icon-wrapper">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                </div>
+                <div class="notification-content-wrapper">
+                    <p class="notification-message-text">Your order #12345 has been shipped</p>
+                    <span class="notification-time-text">2 minutes ago</span>
+                </div>
+            </li>
+            <li class="notification-list-item unread-notification">
+                <div class="notification-icon-wrapper">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                </div>
+                <div class="notification-content-wrapper">
+                    <p class="notification-message-text">Payment successful for order #12344</p>
+                    <span class="notification-time-text">1 hour ago</span>
+                </div>
+            </li>
+            <li class="notification-list-item">
+                <div class="notification-icon-wrapper">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                </div>
+                <div class="notification-content-wrapper">
+                    <p class="notification-message-text">New message from customer support</p>
+                    <span class="notification-time-text">3 hours ago</span>
+                </div>
+            </li>
+            <li class="notification-list-item">
+                <div class="notification-icon-wrapper">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="12"></line>
+                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                    </svg>
+                </div>
+                <div class="notification-content-wrapper">
+                    <p class="notification-message-text">Special offer: 30% off on AirPods</p>
+                    <span class="notification-time-text">1 day ago</span>
+                </div>
+            </li>
+            <li class="notification-list-item">
+                <div class="notification-icon-wrapper">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                </div>
+                <div class="notification-content-wrapper">
+                    <p class="notification-message-text">Item in your wishlist is now on sale</p>
+                    <span class="notification-time-text">2 days ago</span>
+                </div>
+            </li>
+        </ul>
+        <div class="notifications-footer">
+            <a href="#" class="view-all-notifications-link">View all notifications</a>
+        </div>
+    </div>
+
+
+
+     <div class="checkout-main-wrapper">
+        <h1 class="checkout-page-title">Billing Check out Details</h1>
+
+        <div class="checkout-content-grid">
+            <!-- Product Preview -->
+            <div class="product-preview-card">
+                <div class="preview-image-container">
+                    <img src="images/cart.png" alt="Airpad Pro Earband" class="product-preview-img">
+                </div>
+            </div>
+
+            <!-- Product Details -->
+            <div class="product-details-section">
+                <div class="detail-item-block">
+                    <div class="detail-heading-label">Product</div>
+                    <div class="detail-content-text">Airpad Pro Earband</div>
+                </div>
+
+                <div class="detail-item-block">
+                    <div class="detail-heading-label">Date</div>
+                    <div class="detail-content-text">22 August 2025</div>
+                </div>
+
+                <div class="detail-item-block">
+                    <div class="detail-heading-label">Price</div>
+                    <div class="price-highlight-text">$29</div>
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="order-summary-panel">
+                <h2 class="summary-header-title">Order Summary</h2>
+
+                <div class="summary-line-item">
+                    <span class="item-label-span">Items</span>
+                    <span class="item-value-span">1</span>
+                </div>
+
+                <div class="summary-line-item">
+                    <span class="item-label-span">Subtotal</span>
+                    <span class="item-value-span">$.31</span>
+                </div>
+
+                <div class="summary-line-item">
+                    <span class="item-label-span">Shipping</span>
+                    <span class="item-value-span">$.00.0</span>
+                </div>
+
+                <div class="summary-line-item">
+                    <span class="item-label-span">Taxes</span>
+                    <span class="item-value-span">$.00.0</span>
+                </div>
+
+                <div class="summary-line-item">
+                    <span class="item-label-span">Coupen Discount</span>
+                    <span class="item-value-span">$.200</span>
+                </div>
+
+                <div class="divider-separator"></div>
+
+                <div class="total-summary-line">
+                    <span>Total</span>
+                    <span class="total-amount-value">$29</span>
+                </div>
+
+                <a href="payoptions.html"><button class="pay-now-button" onclick="processPayment()">Proceed to Pay</button></a>
+            </div>
+        </div>
+
+        <!-- Billing Form -->
+        <div class="billing-form-container">
+            <div class="form-fields-grid">
+                <!-- First Name -->
+                <div class="input-group-wrapper">
+                    <label class="input-field-label">First Name<span class="required-asterisk">*</span></label>
+                    <input type="text" class="text-input-field" id="firstName" ondblclick="fillPredefinedData('firstName')" >
+                </div>
+
+                <!-- Last Name -->
+                <div class="input-group-wrapper">
+                    <label class="input-field-label">Last Name<span class="required-asterisk">*</span></label>
+                    <input type="text" class="text-input-field" id="lastName" ondblclick="fillPredefinedData('lastName')" >
+                </div>
+
+                <!-- Country -->
+                <div class="input-group-wrapper">
+                    <label class="input-field-label">Country<span class="required-asterisk">*</span></label>
+                    <input type="text" class="text-input-field" id="country" ondblclick="fillPredefinedData('country')">
+                </div>
+
+                <!-- Street Address -->
+                <div class="input-group-wrapper">
+                    <label class="input-field-label">Street address<span class="required-asterisk">*</span></label>
+                    <input type="text" class="text-input-field" id="streetAddress" ondblclick="fillPredefinedData('streetAddress')">
+                </div>
+
+                <!-- City -->
+                <div class="input-group-wrapper">
+                    <label class="input-field-label">City<span class="required-asterisk">*</span></label>
+                    <input type="text" class="text-input-field" id="city" ondblclick="fillPredefinedData('city')" >
+                </div>
+
+                <!-- State -->
+                <div class="input-group-wrapper">
+                    <label class="input-field-label">State<span class="required-asterisk">*</span></label>
+                    <input type="text" class="text-input-field" id="state" ondblclick="fillPredefinedData('state')" >
+                </div>
+
+                <!-- Zipcode -->
+                <div class="input-group-wrapper">
+                    <label class="input-field-label">Zipcode<span class="required-asterisk">*</span></label>
+                    <input type="text" class="text-input-field" id="zipcode" ondblclick="fillPredefinedData('zipcode')" >
+                </div>
+
+                <!-- Phone Number -->
+                <div class="input-group-wrapper">
+                    <label class="input-field-label">Phone Number<span class="required-asterisk">*</span></label>
+                    <input type="tel" class="text-input-field" id="phoneNumber" ondblclick="fillPredefinedData('phoneNumber')">
+                </div>
+            </div>
+
+            <!-- Email (Full Width) -->
+            <div class="input-group-wrapper" style="margin-bottom: 20px;">
+                <label class="input-field-label">Email Id<span class="required-asterisk">*</span></label>
+                <input type="email" class="text-input-field" id="emailId" ondblclick="fillPredefinedData('emailId')" >
+            </div>
+
+            <!-- Address Options -->
+            <div class="address-options-group">
+                <div class="radio-option-row">
+                    <input type="radio" name="addressOption" class="radio-input-control" id="differentAddress" value="different">
+                    <label for="differentAddress" class="radio-label-text">Use a different billing Address</label>
+                </div>
+
+                <div class="radio-option-row">
+                    <input type="radio" name="addressOption" class="radio-input-control" id="sameAddress" value="same" checked>
+                    <label for="sameAddress" class="radio-label-text">Same as Shipping Address</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+     <footer class="site-footer-section">
+        <div class="footer-content-wrapper">
+            <!-- Brand Column -->
+            <div class="brand-column">
+                <div class="brand-logo-container">
+                  <img src="images/navlogo.png">
+                </div>
+                <h2 class="brand-name-text">Airnew</h2>
+            </div>
+
+            <!-- Customer Service Column -->
+            <div class="footer-links-column">
+                <h3 class="column-heading-title">Customer service</h3>
+                <ul class="links-list-container">
+                    <li class="link-list-item"><a href="user.html" class="footer-navigation-link">My Account</a></li>
+                    <li class="link-list-item"><a href="#" class="footer-navigation-link">Checkup</a></li>
+                    <li class="link-list-item"><a href="#" class="footer-navigation-link">FAQ</a></li>
+                    <li class="link-list-item"><a href="#" class="footer-navigation-link">Return</a></li>
+                </ul>
+            </div>
+
+            <!-- Company Column -->
+            <div class="footer-links-column">
+                <h3 class="column-heading-title">Company</h3>
+                <ul class="links-list-container">
+                    <li class="link-list-item"><a href="about.html" class="footer-navigation-link">About us</a></li>
+                    <li class="link-list-item"><a href="blogs.html" class="footer-navigation-link">Blogs</a></li>
+                    <li class="link-list-item"><a href="contact.html" class="footer-navigation-link">Contact us policy</a></li>
+                </ul>
+            </div>
+
+            <!-- Our Information Column -->
+            <div class="footer-links-column">
+                <h3 class="column-heading-title">Our information</h3>
+                <ul class="links-list-container">
+                    <li class="link-list-item"><a href="#" class="footer-navigation-link">Privacy</a></li>
+                    <li class="link-list-item"><a href="#" class="footer-navigation-link">Terms & Condition</a></li>
+                    <li class="link-list-item"><a href="#" class="footer-navigation-link">Customer Feed back</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Information Column -->
+            <div class="contact-info-column">
+                <div class="contact-detail-item">
+                    <p class="contact-label-text">Mobile:</p>
+                    <p class="contact-value-text">123-456-789</p>
+                </div>
+                <div class="contact-detail-item">
+                    <p class="contact-label-text">Email_</p>
+                    <p class="contact-value-text">Airnew@gmail.com</p>
+                </div>
+                <div class="contact-detail-item">
+                    <p class="contact-label-text">Address :</p>
+                    <p class="contact-value-text">12, north city-001</p>
+                </div>
+                <div class="social-media-icons-wrapper">
+                    <a href="#" class="social-icon-link" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="#" class="social-icon-link" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-icon-link" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom Section -->
+        <div class="footer-bottom-section">
+            <p class="copyright-text">© 2025 airnew. co. All rights reserved.</p>
+            <div class="bottom-links-wrapper">
+                <a href="#" class="bottom-policy-link">Terms & Conditions</a>
+                <span class="link-separator">|</span>
+                <a href="#" class="bottom-policy-link">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
